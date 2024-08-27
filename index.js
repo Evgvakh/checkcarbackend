@@ -24,7 +24,10 @@ import mongoose from "mongoose";
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'https://evgeny-vakhrushev.students-laplateforme.io',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}));
 app.use("/uploads", express.static("uploads"));
 
 connectToDB();
