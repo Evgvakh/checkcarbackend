@@ -28,7 +28,7 @@ const corsOptions = {
 const app = express();
 app.use(express.json());
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use("/uploads", express.static("uploads"));
 
