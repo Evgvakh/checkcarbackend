@@ -1,10 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-export const checkAdminToken = (req, res, next) => {
-    if (req.method === 'OPTIONS') {
-        next()
-    }
-
+export const checkAdminToken = (req, res, next) => {    
     try {
         const token = req.headers.authorization;
         if (!token) {

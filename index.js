@@ -30,8 +30,6 @@ const corsOptions = {
   optionSuccessStatus: 200,
 }
 
-
-connectToDB();
 const app = express();
 app.use(express.json());
 app.use((req, res, next) => {
@@ -42,7 +40,7 @@ app.use(cors(corsOptions));
 app.options('*', cors());
 app.use("/uploads", express.static("uploads"));
 
-
+connectToDB();
 
 app.get("/", (req, res) => {
   res.send("WORKS");
@@ -81,7 +79,7 @@ app.post('/getCheckByUserAndPass', async (req, res) => {
 app.post('/createUser', addUser)
 app.post('/adminLogin', adminLogin)
 
-app.listen(process.env.PORT, (err) => {
+app.listen(process.env.PORT || PORT, (err) => {
   if (err) {
     return console.log("SERVER DOWN");
   } else {
