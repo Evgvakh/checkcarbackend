@@ -29,8 +29,14 @@ const corsOptions = {
   optionSuccessStatus: 200,
 }
 
+
+
 const app = express();
 app.use(express.json());
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  next();
+})
 app.use(cors(corsOptions));
 app.options('*', cors());
 app.use("/uploads", express.static("uploads"));
