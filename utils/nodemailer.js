@@ -13,12 +13,16 @@ const transporter = nodemailer.createTransport({
 });
 
 const mailer = (message, res) => {
-    transporter.sendMail(message, (err, info) => {
-        if (err) {
-            res.send(err)
-        }
-        res.send(info)
-    })
+    try {
+        transporter.sendMail(message, (err, info) => {
+            if (err) {
+                res.send(err)
+            }
+            res.send(info)
+        })
+    } catch (err) {
+        res.json(err)
+    }
 }
 
 export const sendMail = (req, res) => {
@@ -41,7 +45,6 @@ export const sendMail = (req, res) => {
             `
         }
         mailer(message, res)
-        res.json('SENT')
     } catch (err) {
         res.send(err);
     }
