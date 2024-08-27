@@ -15,21 +15,23 @@ import Image from './DB/models/Image.js';
 import User from "./DB/models/User.js";
 
 import { addCheck, getAllChecks, getCheckByID } from './controllers/Check.js';
-import { getImgsByCheckID, saveImgToDB, getImages, getImgsByPlate} from './controllers/Images.js'
+import { getImgsByCheckID, saveImgToDB, getImages, getImgsByPlate } from './controllers/Images.js'
 import { addUser, adminLogin } from "./controllers/Users.js";
 
 import { sendMail } from "./utils/nodemailer.js";
 import mongoose from "mongoose";
 
 const corsOptions = {
-  origin: ['http://192.168.1.27:8080', 'https://evgeny-vakhrushev.students-laplateforme.io/']
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept', 'x-client-key', 'x-client-token', 'x-client-secret', 'Authorization'],
+  credentials: true,            //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
 }
 
 const app = express();
 app.use(express.json());
-
 app.use(cors(corsOptions));
-
 app.use("/uploads", express.static("uploads"));
 
 connectToDB();
@@ -47,8 +49,8 @@ app.post('/addCheck', addCheck)
 app.get('/getAllChecks', checkAdminToken, getAllChecks)
 app.get('/getCheckByID/:id', getCheckByID)
 app.post('/getCheckByUserAndPass', async (req, res) => {
-  const check = await Check.findOne({email: req.body.email, password: req.body.password});
-  if(!check) return res.send({errorMessage: 'Please verify your data'})
+  const check = await Check.findOne({ email: req.body.email, password: req.body.password });
+  if (!check) return res.send({ errorMessage: 'Please verify your data' })
   const token = jwt.sign(
     {
       id: check._id,
@@ -58,9 +60,9 @@ app.post('/getCheckByUserAndPass', async (req, res) => {
     "OkCheckCarToken",
     {
       expiresIn: "24h"
-    }    
+    }
   )
-  res.json({check, token});
+  res.json({ check, token });
 })
 
 app.post('/createUser', addUser)
