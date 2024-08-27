@@ -53,7 +53,8 @@ app.get('/getImgsByCheckID/:id', getImgsByCheckID);
 app.get('/getImsByPlate/:plate', getImgsByPlate)
 
 app.post('/addCheck', addCheck)
-app.get('/getAllChecks', checkAdminToken, getAllChecks)
+app.get('/getAllChecks', getAllChecks)
+// app.get('/getAllChecks', checkAdminToken, getAllChecks)
 app.get('/getCheckByID/:id', getCheckByID)
 app.post('/getCheckByUserAndPass', async (req, res) => {
   const check = await Check.findOne({ email: req.body.email, password: req.body.password });
