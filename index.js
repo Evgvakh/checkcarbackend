@@ -31,7 +31,7 @@ function setCorsHeaders(req, res, next) {
 const app = express();
 app.use(express.json());
 app.use(setCorsHeaders)
-app.use(cors());
+// app.use(cors());
 app.use("/uploads", express.static("uploads"));
 
 connectToDB();
