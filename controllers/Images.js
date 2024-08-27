@@ -1,5 +1,6 @@
 import Image from "../DB/models/Image.js";
 import Check from "../DB/models/Check.js";
+import { connectToDB } from './../DB/DB.js';
 
 export const getImgsByCheckID = async (req, res) => {
     const data = await Image.find({ checkID: req.params.id });
@@ -17,7 +18,8 @@ export const saveImgToDB = async (req, res) => {
     res.json(imgData);
 }
 
-export const getImages = async (req, res) => {    
+export const getImages = async (req, res) => {
+    await connectToDB();    
     const image = await Image.find({ checkID: req.query.id, zone: req.query.zone })
     res.json(image)
 }
