@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
+import 'dotenv/config'
 
 export const connectToDB = () => {
     mongoose.connect(
-        "mongodb+srv://evgvakh:MarkUp2022!@checkcar.jcdsbzx.mongodb.net/?retryWrites=true&w=majority&appName=CheckCar"
+        process.env.MONGO_URL
     )
     .then (() => console.log('Connected to DB'))
     .catch(err => { console.log("DB error", err) })

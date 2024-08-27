@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import jwt from 'jsonwebtoken'
 import bcrypt from "bcrypt";
+import 'dotenv/config'
 
 import { connectToDB } from "./DB/DB.js";
 
@@ -30,7 +31,7 @@ const corsOptions = {
 }
 
 
-
+connectToDB();
 const app = express();
 app.use(express.json());
 app.use((req, res, next) => {
@@ -41,7 +42,11 @@ app.use(cors(corsOptions));
 app.options('*', cors());
 app.use("/uploads", express.static("uploads"));
 
-connectToDB();
+
+
+app.get("/", (req, res) => {
+  res.send("WORKS");
+});
 
 app.post("/sendMail", sendMail);
 app.post("/addCLientData", createDIr);
@@ -76,7 +81,7 @@ app.post('/getCheckByUserAndPass', async (req, res) => {
 app.post('/createUser', addUser)
 app.post('/adminLogin', adminLogin)
 
-app.listen(process.env.PORT || 4444, (err) => {
+app.listen(process.env.PORT, (err) => {
   if (err) {
     return console.log("SERVER DOWN");
   } else {
