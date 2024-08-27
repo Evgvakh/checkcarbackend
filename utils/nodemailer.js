@@ -22,7 +22,7 @@ const mailer = (message, res) => {
 }
 
 export const sendMail = (req, res) => {
-    const message = {
+    try {const message = {
         to: req.body.email,
         subject: "Your CheckCar's been created succesfully", 
         html: `
@@ -39,7 +39,9 @@ export const sendMail = (req, res) => {
             <p>Please note that you have 45 minutes to add the pictures. After this time you will not be allowed to add any photo.</p>    
             `
     }
-    mailer(message, res)
+    mailer(message, res)} catch(err) {
+        throw err;
+    }
 }
 
 

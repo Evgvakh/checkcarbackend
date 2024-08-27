@@ -9,7 +9,7 @@ export const getAllChecks = async (req, res) => {
 };
 
 export const addCheck = async (req, res) => {
-
+    await connectToDB();
     const password = generator.generate({
         length: 6,
         numbers: true
