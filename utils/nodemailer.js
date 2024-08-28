@@ -4,14 +4,10 @@ const transporter = nodemailer.createTransport({
     host: 'smtp.orange.fr',
     port: 465,
     secure: true,
-    auth: {
+    auth: {        
         user: process.env.AUTH_EMAIL_USER,
         pass: process.env.AUTH_EMAIL_PASSWORD_APPLICATIONS
-    },
-    tls: {
-        // do not fail on invalid certs
-        rejectUnauthorized: false,
-      },
+    },    
 }, {
     from: 'OK Check Car <evgenyvakhrushev@orange.fr>',
 });
