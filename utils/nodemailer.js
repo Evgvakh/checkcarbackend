@@ -6,7 +6,7 @@ const transporter = nodemailer.createTransport({
     secure: true,
     auth: {
         user: process.env.AUTH_EMAIL_USER,
-        pass: process.env.AUTH_EMAIL_PASSWORD
+        pass: process.env.AUTH_EMAIL_PASSWORD_APPLICATIONS
     }
 }, {
     from: 'OK Check Car <evgenyvakhrushev@orange.fr>',
