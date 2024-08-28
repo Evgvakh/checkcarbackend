@@ -7,22 +7,14 @@ const transporter = nodemailer.createTransport({
     auth: {
         user: process.env.AUTH_EMAIL_USER,
         pass: process.env.AUTH_EMAIL_PASSWORD_APPLICATIONS
-    }
+    },
+    tls: {
+        // do not fail on invalid certs
+        rejectUnauthorized: false,
+      },
 }, {
     from: 'OK Check Car <evgenyvakhrushev@orange.fr>',
 });
-
-// const transporter = nodemailer.createTransport({
-//     host: 'smtp.mail.yahoo.com',
-//     port: 587,
-//     secure: false,
-//     auth: {
-//         user: 'evgvakh@yahoo.com',
-//         pass: 'MarkUp2022!'
-//     }
-// }, {
-//     from: 'OK Check Car <evgvakh@yahoo.com>',
-// });
 
 const mailer = (message, res) => {
     try {
