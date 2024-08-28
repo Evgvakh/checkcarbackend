@@ -2,8 +2,8 @@ import nodemailer from 'nodemailer'
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.orange.fr',
-    port: 587,
-    secure: false,
+    port: 465,
+    secure: true,
     auth: {
         user: 'evgenyvakhrushev@orange.fr',
         pass: 'Ncetosu22!'
@@ -11,6 +11,18 @@ const transporter = nodemailer.createTransport({
 }, {
     from: 'OK Check Car <evgenyvakhrushev@orange.fr>',
 });
+
+// const transporter = nodemailer.createTransport({
+//     host: 'smtp.mail.yahoo.com',
+//     port: 587,
+//     secure: false,
+//     auth: {
+//         user: 'evgvakh@yahoo.com',
+//         pass: 'MarkUp2022!'
+//     }
+// }, {
+//     from: 'OK Check Car <evgvakh@yahoo.com>',
+// });
 
 const mailer = (message, res) => {
     try {
