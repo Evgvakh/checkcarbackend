@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer'
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.orange.fr',
-    port: 25,
+    port: 587,
     secure: false,
     auth: {
         user: 'evgenyvakhrushev@orange.fr',
