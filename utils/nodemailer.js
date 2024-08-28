@@ -23,6 +23,13 @@ const mailer = (message, res) => {
     } catch (err) {
         res.json(err)
     }
+    transporter.verify(function (error, success) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("Server is ready to take our messages");
+        }
+      });
 }
 
 export const sendMail = (req, res) => {
@@ -44,6 +51,7 @@ export const sendMail = (req, res) => {
             <p>Please note that you have 45 minutes to add the pictures. After this time you will not be allowed to add any photo.</p>    
             `
         }
+        
         mailer(message, res)
     } catch (err) {
         res.send(err);
