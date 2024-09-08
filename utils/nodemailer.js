@@ -1,15 +1,15 @@
 import nodemailer from 'nodemailer'
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp.orange.fr',
-    port: 465,
-    secure: true,
+    host: 'smtp-mail.outlook.com',
+    port: 587,
+    secure: false,
     auth: {        
         user: process.env.AUTH_EMAIL_USER,
-        pass: process.env.AUTH_EMAIL_PASSWORD_APPLICATIONS
+        pass: process.env.AUTH_EMAIL_PASSWORD
     },    
 }, {
-    from: 'OK Check Car <evgenyvakhrushev@orange.fr>',
+    from: 'OK Check Car <evgvakh@outlook.com>',
 });
 
 const mailer = (message, res) => {
