@@ -27,8 +27,19 @@ export const addCheck = async (req, res) => {
 };
 
 export const getCheckByID = async (req, res) => {
-    const data = await Check.findById(req.params.id)
-    res.json(data)
+    try { 
+        const data = await Check.findById(req.params.id) 
+        if(data) {
+            console.log(data)
+            res.json(data)
+        } else {
+            console.log('error')
+            res.json({errorMessage: "wrong checkID"})
+        }
+    } catch (err) {
+        res.json({ errorMessage: err })
+    }
+
 };
 
 
