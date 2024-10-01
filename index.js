@@ -7,7 +7,11 @@ import 'dotenv/config'
 import { connectToDB } from "./DB/DB.js";
 
 import { upload } from "./utils/multer.js";
-import { uploadImg } from "./utils/upload.js";
+
+//
+// import { uploadImg } from "./utils/upload.js";
+//
+
 import { createDIr } from "./utils/createDir.js";
 import { checkAdminToken } from "./utils/middleware.js";
 
@@ -43,13 +47,14 @@ app.use("/uploads", express.static("uploads"));
 connectToDB();
 
 app.get("/", (req, res) => {
-  res.send("WORKS");
+  try {res.send("WORKS");} catch(err) {console.log(err)}
 });
 
 app.post("/sendMail", sendMail);
 app.post("/addCLientData", createDIr);
 
-app.post("/upload/:id", upload.array("img"), uploadImg);
+// app.post("/upload/:id", upload.array("img"), uploadImg);
+// app.post("/upload/:id", uploadImage);
 app.post('/saveImgToDB', saveImgToDB)
 app.get('/getImages', getImages)
 app.get('/getImgsByCheckID/:id', getImgsByCheckID);
@@ -79,7 +84,7 @@ app.post('/getCheckByUserAndPass', async (req, res) => {
 app.post('/createUser', addUser)
 app.post('/adminLogin', adminLogin)
 
-app.listen(process.env.PORT || PORT, (err) => {
+app.listen(process.env.PORT || 4444, (err) => {
   if (err) {
     return console.log("SERVER DOWN");
   } else {
