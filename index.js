@@ -88,6 +88,6 @@ app.listen(process.env.PORT || 39001, (err) => {
   if (err) {
     return console.log("SERVER DOWN");
   } else {
-    return console.log(`Server works on PORT ${process.env.PORT || 4444}`);
+    return console.log(`Server works on PORT ${process.env.PORT}`);
   }
 });
