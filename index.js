@@ -84,7 +84,7 @@ app.post('/getCheckByUserAndPass', async (req, res) => {
 app.post('/createUser', addUser)
 app.post('/adminLogin', adminLogin)
 
-app.listen(process.env.PORT || 4444, (err) => {
+app.listen(process.env.PORT || 39001, (err) => {
   if (err) {
     return console.log("SERVER DOWN");
   } else {
