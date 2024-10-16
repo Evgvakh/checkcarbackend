@@ -1,15 +1,15 @@
 import nodemailer from 'nodemailer'
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp-mail.outlook.com',
-    port: 587,
-    secure: false,
+    host: 'smtp-relay.brevo.com',
+    port: 465,
+    secure: true,
     auth: {        
         user: process.env.AUTH_EMAIL_USER,
         pass: process.env.AUTH_EMAIL_PASSWORD
     },    
 }, {
-    from: 'OK Check Car <evgvakh@outlook.com>',
+    from: 'OK Check Car <7e0c05001@smtp-brevo.com>',
 });
 
 const mailer = (message, res) => {

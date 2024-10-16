@@ -7,10 +7,8 @@ import 'dotenv/config'
 import { connectToDB } from "./DB/DB.js";
 
 import { upload } from "./utils/multer.js";
+import { uploadImg } from "./utils/upload.js";
 
-//
-// import { uploadImg } from "./utils/upload.js";
-//
 
 import { createDIr } from "./utils/createDir.js";
 import { checkAdminToken } from "./utils/middleware.js";
@@ -53,8 +51,7 @@ app.get("/", (req, res) => {
 app.post("/sendMail", sendMail);
 app.post("/addCLientData", createDIr);
 
-// app.post("/upload/:id", upload.array("img"), uploadImg);
-// app.post("/upload/:id", uploadImage);
+app.post("/upload/:folder", upload.array("img"), uploadImg);
 app.post('/saveImgToDB', saveImgToDB)
 app.get('/getImages', getImages)
 app.get('/getImgsByCheckID/:id', getImgsByCheckID);
