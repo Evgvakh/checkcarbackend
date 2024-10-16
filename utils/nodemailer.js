@@ -9,7 +9,7 @@ const transporter = nodemailer.createTransport({
         pass: process.env.AUTH_EMAIL_PASSWORD
     },    
 }, {
-    from: 'OK Check Car <7e0c05001@smtp-brevo.com>',
+    from: 'OK Check Car <>',
 });
 
 const mailer = (message, res) => {
