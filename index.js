@@ -45,7 +45,7 @@ app.use("/uploads", express.static("uploads"));
 connectToDB();
 
 app.get("/", (req, res) => {
-  try {res.send("WORKS");} catch(err) {console.log(err)}
+  try {res.status(200).send("WORKS");} catch(err) {console.log(err)}
 });
 
 app.post("/sendMail", sendMail);
